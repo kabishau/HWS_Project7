@@ -12,6 +12,7 @@
 		5B574E3322768A910057606D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B574E3122768A910057606D /* Main.storyboard */; };
 		5B574E3522768A920057606D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B574E3422768A920057606D /* Assets.xcassets */; };
 		5B574E3822768A920057606D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B574E3622768A920057606D /* LaunchScreen.storyboard */; };
+		5B574E4022769BDE0057606D /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B574E3F22769BDE0057606D /* Petition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		5B574E3422768A920057606D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B574E3722768A920057606D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B574E3922768A920057606D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B574E3F22769BDE0057606D /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				5B574E2D22768A910057606D /* AppDelegate.swift */,
 				5B574E2F22768A910057606D /* ViewController.swift */,
+				5B574E3F22769BDE0057606D /* Petition.swift */,
 				5B574E3122768A910057606D /* Main.storyboard */,
 				5B574E3422768A920057606D /* Assets.xcassets */,
 				5B574E3622768A920057606D /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				5B574E3022768A910057606D /* ViewController.swift in Sources */,
 				5B574E2E22768A910057606D /* AppDelegate.swift in Sources */,
+				5B574E4022769BDE0057606D /* Petition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +295,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabishau.HWS-Project7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -309,7 +313,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabishau.HWS-Project7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
