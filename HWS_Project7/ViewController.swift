@@ -19,6 +19,7 @@ class ViewController: UITableViewController {
     func parse(json: Data) {
         let decoder = JSONDecoder()
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
+            print(jsonPetitions)
             petitions = jsonPetitions.results
             tableView.reloadData()
         }
@@ -34,6 +35,12 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = petition.title
         cell.detailTextLabel?.text = petition.body
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController()
+        detailViewController.detailItem = petitions[indexPath.row]
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
