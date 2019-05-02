@@ -7,6 +7,9 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(creditsButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -24,12 +27,32 @@ class ViewController: UITableViewController {
             }
         }
         showError()
+        
+    }
+    
+    @objc func creditsButtonTapped() {
+        let alertController = UIAlertController(title: "Information", message: "This data comes from the \"We The People\" API of the Whitehouse", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    @objc func searchButtonTapped() {
+        let alertController = UIAlertController(title: "Search Petition", message: nil, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Type the topic here"
+        }
+        let searchAction = UIAlertAction(title: "Search", style: .default) { (action) in
+            print("Search action handler")
+        }
+        alertController.addAction(searchAction)
+        present(alertController, animated: true)
     }
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
-            print(jsonPetitions)
             petitions = jsonPetitions.results
             tableView.reloadData()
         }
