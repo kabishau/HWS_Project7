@@ -3,20 +3,25 @@ import UIKit
 class ViewController: UITableViewController {
     
     var petitions = [Petition]()
+    var filteredPetitions = [Petition]()
+    var vcTitle = "Full List of Petitions"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = vcTitle
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Credits", style: .plain, target: self, action: #selector(creditsButtonTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped))
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonTapped)), UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonTapped))]
         
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
-            // urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+            //urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
             urlString = "https://hackingwithswift.com/samples/petitions-1.json"
         } else {
-            // urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
+            //urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
@@ -38,22 +43,60 @@ class ViewController: UITableViewController {
         
     }
     
+    @objc func refreshButtonTapped() {
+        filteredPetitions = petitions
+        self.title = vcTitle
+        tableView.reloadData()
+    }
+    
     @objc func searchButtonTapped() {
+        
         let alertController = UIAlertController(title: "Search Petition", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textField) in
             textField.placeholder = "Type the topic here"
         }
-        let searchAction = UIAlertAction(title: "Search", style: .default) { (action) in
-            print("Search action handler")
+        
+        let searchAction = UIAlertAction(title: "Search", style: .default) {
+            [weak self, weak alertController] (action) in
+            guard let phrase = alertController?.textFields?[0].text else { return }
+            self?.search(by: phrase)
         }
         alertController.addAction(searchAction)
+        
         present(alertController, animated: true)
+    }
+    
+    func search(by phrase: String) {
+        if phrase == "" {
+            
+            let alertController = UIAlertController(title: "Error", message: "You can't search nothing... Please type something and try again.", preferredStyle: .alert)
+            let searchAgainAction = UIAlertAction(title: "Search Again", style: .default) { (action) in
+                self.searchButtonTapped()
+            }
+            alertController.addAction(searchAgainAction)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        filteredPetitions = []
+        for petition in petitions {
+            if petition.title.lowercased().contains(phrase.lowercased()) {
+                filteredPetitions.append(petition)
+            }
+        }
+        self.title = "Filtered by: \(phrase)"
+        tableView.reloadData()
     }
     
     func parse(json: Data) {
         let decoder = JSONDecoder()
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results
+            filteredPetitions = petitions
             tableView.reloadData()
         }
     }
@@ -66,12 +109,12 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return petitions.count
+        return filteredPetitions.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let petition = petitions[indexPath.row]
+        let petition = filteredPetitions[indexPath.row]
         cell.textLabel?.text = petition.title
         cell.detailTextLabel?.text = petition.body
         return cell
@@ -79,7 +122,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
-        detailViewController.detailItem = petitions[indexPath.row]
+        detailViewController.detailItem = filteredPetitions[indexPath.row]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

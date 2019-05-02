@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45791954227B71C5006BF725 /* Description in Resources */ = {isa = PBXBuildFile; fileRef = 45791953227B71C5006BF725 /* Description */; };
 		5B574E2E22768A910057606D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B574E2D22768A910057606D /* AppDelegate.swift */; };
 		5B574E3022768A910057606D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B574E2F22768A910057606D /* ViewController.swift */; };
 		5B574E3322768A910057606D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B574E3122768A910057606D /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45791953227B71C5006BF725 /* Description */ = {isa = PBXFileReference; lastKnownFileType = text; path = Description; sourceTree = "<group>"; };
 		5B574E2A22768A910057606D /* HWS_Project7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HWS_Project7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B574E2D22768A910057606D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B574E2F22768A910057606D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		5B574E2C22768A910057606D /* HWS_Project7 */ = {
 			isa = PBXGroup;
 			children = (
+				45791953227B71C5006BF725 /* Description */,
 				5B574E2D22768A910057606D /* AppDelegate.swift */,
 				5B574E2F22768A910057606D /* ViewController.swift */,
 				6B0300602278AD65004E2533 /* DetailViewController.swift */,
@@ -131,6 +134,7 @@
 				5B574E3822768A920057606D /* LaunchScreen.storyboard in Resources */,
 				5B574E3522768A920057606D /* Assets.xcassets in Resources */,
 				5B574E3322768A910057606D /* Main.storyboard in Resources */,
+				45791954227B71C5006BF725 /* Description in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +304,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabishau.HWS-Project7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -319,7 +323,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kabishau.HWS-Project7";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

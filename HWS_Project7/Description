@@ -1,0 +1,8 @@
+app consists of two same vc that sit in different tab bar items
+petitions are loaded from HWS json file
+each vc gets it's own list of petitions
+detail vc shows petition description using styled html format
+credits button - shows API information
+search button allow to search in titles and display filtered list of petitions
+refresh button = loads the original list of petitions
+vc's title show current search phrase or indicates that full list is loaded
